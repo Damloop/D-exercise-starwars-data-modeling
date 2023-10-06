@@ -27,6 +27,31 @@ class Address(Base):
 
     def to_dict(self):
         return {}
+    
+class Planets(Base):
+    __tablename__= "planets"
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50))
+    rotation_period = Column(Integer)
+
+class Characters(Base):
+    __tablename__ = "characters"
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50), unique=True)
+    mass = Column(Integer)
+    homeworld = Column(Integer, ForeignKey("planets.id"))
+    homeworld_relationship = relationship(Planets)
+
+
+
+
+
+
+
+
+
+
 
 ## Draw from SQLAlchemy base
 render_er(Base, 'diagram.png')
+ 
